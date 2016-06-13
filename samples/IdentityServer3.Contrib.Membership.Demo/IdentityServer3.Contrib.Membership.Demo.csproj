@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IdentityServer3.Contrib.Membership.Demo</RootNamespace>
     <AssemblyName>IdentityServer3.Contrib.Membership.Demo</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -85,8 +86,8 @@
       <HintPath>..\..\src\packages\ServiceStack.4.0.56\lib\net40\ServiceStack.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.Authentication.IdentityServer, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\src\packages\ServiceStack.Authentication.IdentityServer.0.1.0\lib\net452\ServiceStack.Authentication.IdentityServer.dll</HintPath>
+    <Reference Include="ServiceStack.Authentication.IdentityServer, Version=4.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\src\packages\ServiceStack.Authentication.IdentityServer.4.0.6\lib\net45\ServiceStack.Authentication.IdentityServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.Client, Version=4.0.56.0, Culture=neutral, processorArchitecture=MSIL">
@@ -147,9 +148,9 @@
     <None Include="App.config" />
     <EmbeddedResource Include="idsrv3test.pfx" />
     <Content Include="default.cshtml" />
-    <None Include="packages.config" />
     <Content Include="Views\Hello.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\IdentityServer3.Contrib.Membership\IdentityServer3.Contrib.Membership.csproj">
