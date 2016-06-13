@@ -4,7 +4,7 @@
 Identity Server is a framework and doesn't provide implementations of user data sources out of the box.
 If you have an existing ASP.NET 2.0 Membership Database containing user data for existing systems then you can install the following package:
 
-```bash
+```powershell
 PM> Install-Package IdentityServer3.Contrib.Membership
 ```
 
