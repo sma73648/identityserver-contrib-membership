@@ -1,5 +1,8 @@
 # IdentityServer3.Contrib.Membership
 
+[![Build status](https://ci.appveyor.com/api/projects/status/avdpiba1rj8ce59h/branch/master?svg=true)](https://ci.appveyor.com/project/wwwlicious/identityserver-contrib-membership/branch/master)
+[![NuGet version](https://badge.fury.io/nu/IdentityServer3.Contrib.Membership.svg)](https://badge.fury.io/nu/IdentityServer3.Contrib.Membership)
+
 ## ASP.NET 2.0 Membership Database as Identity Server User Store
 Identity Server is a framework and doesn't provide implementations of user data sources out of the box.
 If you have an existing ASP.NET 2.0 Membership Database containing user data for existing systems then you can install the following package:
