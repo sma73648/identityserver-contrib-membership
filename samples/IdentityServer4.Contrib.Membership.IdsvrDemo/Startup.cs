@@ -1,104 +1,105 @@
 ﻿// This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
-namespace IdentityServer4.Contrib.Membership.Demo
+namespace IdentityServer4.Contrib.Membership.IdsvrDemo
 {
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Security.Cryptography.X509Certificates;
-    using IdentityModel;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using Models;
-    using Serilog;
+    using System.Collections.Generic;
+    using IdentityModel;
+    using IdentityServer4.Models;
 
     public class Startup
     {
-        private readonly IHostingEnvironment environment;
-
-        public Startup(IHostingEnvironment environment)
+        public Startup(IHostingEnvironment env)
         {
-            this.environment = environment;
-
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo
-                .LiterateConsole(outputTemplate: "{Timestamp:HH:MM} [{Level}] ({Name:l}){NewLine} {Message}{NewLine}{Exception}")
-                .CreateLogger();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
+        public IConfigurationRoot Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var cert = new X509Certificate2(Path.Combine(environment.ContentRootPath, "idsrv3test.pfx"), "idsrv3test");
-
-            var builder = services.AddIdentityServer(options =>
-            {
-                options.RequireSsl = false;
-            })
-            .AddInMemoryClients(Clients.Get())
-            .AddInMemoryScopes(Scopes.Get())
-            .AddMembershipService(new MembershipOptions
-            {
-                ConnectionString = "Data Source=localhost;Initial Catalog=Membership;Integrated Security=True",
-                ApplicationName = "Test"
-            })
-            .SetSigningCredential(cert);
-
             services.AddMvc();
+
+            services
+                .AddDeveloperIdentityServer()
+                .AddInMemoryClients(Clients.Get())
+                .AddInMemoryScopes(Scopes.Get())
+                .AddMembershipService(new MembershipOptions
+                {
+                    ConnectionString = "Data Source=localhost;Initial Catalog=Membership;Integrated Security=True",
+                    ApplicationName = "Test" 
+                });
         }
 
-        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddSerilog();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
 
+            app.UseStaticFiles();  
+                      
             app.UseIdentityServer();
-            app.UseDeveloperExceptionPage();
-            app.UseStaticFiles();
+
             app.UseMvcWithDefaultRoute();
         }
-    }
 
-    class Clients
-    {
-        public static List<Client> Get()
+        static class Clients
         {
-            return new List<Client>
+            public static List<Client> Get()
             {
-                new Client
+                return new List<Client>
                 {
-                    ClientName = "ServiceStack.SelfHost",
-                    ClientId = "ServiceStack.SelfHost",
-                    Enabled = true,
-
-                    AccessTokenType = AccessTokenType.Jwt,
-
-                    AllowedGrantTypes = GrantTypes.Hybrid,
-
-                    ClientSecrets = new List<Secret>
+                    new Client
                     {
-                        new Secret("F621F470-9731-4A25-80EF-67A6F7C5F4B8".Sha256())
-                    },
+                        ClientName = "ServiceStack.SelfHost",
+                        ClientId = "ServiceStack.SelfHost",
+                        Enabled = true,
 
-                    AllowAccessToAllScopes = true,
+                        AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
 
-                    RedirectUris = new List<string>
-                    {
-                        "http://localhost:5001/signin-oidc"
-                    },
+                        AccessTokenType = AccessTokenType.Jwt,
 
-                    RequireConsent = false
-                }
-            };
+                        ClientSecrets = new List<Secret>
+                        {
+                            new Secret("F621F470-9731-4A25-80EF-67A6F7C5F4B8".Sha256())
+                        },
+
+                        AllowAccessToAllScopes = true,
+
+                        RedirectUris = new List<string>
+                        {
+                            "http://localhost:5001/signin-oidc"
+                        },
+
+                        RequireConsent = false
+                    }
+                };
+            }
         }
-    }
 
-    class Scopes
-    {
-        public static List<Scope> Get()
+        static class Scopes
         {
-            return new List<Scope>(StandardScopes.All)
+            public static List<Scope> Get()
+            {
+                return new List<Scope>(StandardScopes.All)
             {
                 StandardScopes.OfflineAccess,
                 new Scope
@@ -109,7 +110,7 @@ namespace IdentityServer4.Contrib.Membership.Demo
                     Claims = new List<ScopeClaim>
                     {
                         new ScopeClaim(JwtClaimTypes.Subject),
-                        new ScopeClaim(JwtClaimTypes.PreferredUserName)
+                        new ScopeClaim(JwtClaimTypes.Name)
                     },
                     ScopeSecrets = new List<Secret>
                     {
@@ -117,6 +118,7 @@ namespace IdentityServer4.Contrib.Membership.Demo
                     }
                 }
             };
+            }
         }
     }
 }

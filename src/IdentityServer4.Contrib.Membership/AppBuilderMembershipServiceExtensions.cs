@@ -33,7 +33,7 @@ namespace IdentityServer4.Contrib.Membership
 
             builder.Services.AddTransient<IMembershipService, MembershipService>();
             builder.Services.AddTransient<IRoleService, RoleService>();
-            builder.Services.AddTransient<IClaimsService, ClaimsService>();
+            builder.Services.AddTransient<IMembershipClaimsService, MembershipClaimsService>();
 
             builder.Services.AddTransient<IProfileService, MembershipProfileService>();
 

@@ -1,4 +1,7 @@
-﻿namespace IdentityServer4.Contrib.Membership.ClientDemo
+﻿// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+namespace IdentityServer4.Contrib.Membership.ClientDemo
 {
     using System.IdentityModel.Tokens.Jwt;
     using Microsoft.AspNetCore.Builder;
@@ -15,23 +18,23 @@
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                AuthenticationScheme = "Cookies",
-                AutomaticAuthenticate = true
+                AuthenticationScheme = "Cookies"
             });
-            
+
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
             app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
                 AuthenticationScheme = "oidc",
                 SignInScheme = "Cookies",
 
                 Authority = "http://localhost:5000",
+                
                 RequireHttpsMetadata = false,
 
                 ClientId = "ServiceStack.SelfHost",
@@ -39,9 +42,9 @@
 
                 ResponseType = "code id_token",
 
-                GetClaimsFromUserInfoEndpoint = true,
+                GetClaimsFromUserInfoEndpoint = true,                
 
-                SaveTokens = true,
+                SaveTokens = true,                
 
                 Scope = { "openid", "profile", "ServiceStack.SelfHost", "email", "offline_access" }
             });

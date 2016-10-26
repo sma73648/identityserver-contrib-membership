@@ -11,21 +11,32 @@ namespace IdentityServer4.Contrib.Membership
     using Models;
     using Services;
     using Extensions;
+    using IMembershipClaimsService = Interfaces.IMembershipClaimsService;
 
+    /// <summary>
+    /// Implementation of the Identity Server 4 Profile Service <see cref="IdentityServer4.Services.IProfileService"/> 
+    /// that queries the Membership Database in order to transform the Membership Data into Claims
+    /// </summary>
     public class MembershipProfileService : IProfileService
     {
         private readonly IMembershipService membershipService;
-        private readonly IClaimsService claimsService;
+        private readonly IMembershipClaimsService claimsService;
 
         /// <summary>Constructor</summary>
         /// <param name="membershipService">Membership Service</param>
         /// <param name="claimsService">Claims Service</param>
-        public MembershipProfileService(IMembershipService membershipService, IClaimsService claimsService)
+        public MembershipProfileService(IMembershipService membershipService, IMembershipClaimsService claimsService)
         {
             this.membershipService = membershipService.ThrowIfNull(nameof(membershipService));
             this.claimsService = claimsService.ThrowIfNull(nameof(claimsService));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        /// 
         public async Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
             var subject = context.Subject;
@@ -52,7 +63,7 @@ namespace IdentityServer4.Contrib.Membership
                 claims = claims.Where(x => requestedClaimTypes.Contains(x.Type));
             }
 
-            context.IssuedClaims = claims;
+            context.IssuedClaims = claims.ToList();
         }
 
         public async Task IsActiveAsync(IsActiveContext context)

@@ -1,12 +1,10 @@
-﻿@*This Source Code Form is subject to the terms of the Mozilla Public
-  License, v. 2.0. If a copy of the MPL was not distributed with this
-  file, You can obtain one at http://mozilla.org/MPL/2.0/.*@
-@model IdentityServer4.Contrib.Membership.IdsvrDemo.Model.ErrorViewModel
+﻿@model IdentityServer4.Contrib.Membership.IdsvrDemo.Models.ErrorViewModel
+
 @{
-    var errorDescription = Model?.Error?.ErrorDescription ?? "Sorry, there was an unexpected error.";
-    var errorCode = Model?.Error?.ErrorCode;
-    var requestId = Model?.Error?.RequestId;
+    var error = Model?.Error?.Error;
+    var request_id = Model?.Error?.RequestId;
 }
+
 <div class="error-page">
     <div class="page-header">
         <h1>Error</h1>
@@ -15,16 +13,22 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="alert alert-danger">
-                <strong hide-if-null="error_code">
-                    <em>
-                        @Model.Error.ErrorCode
-                    </em>
-                </strong>
+                Sorry, there was an error
 
-                @errorDescription
+                @if (error != null)
+                {
+                    <strong>
+                        <em>
+                            : @error
+                        </em>
+                    </strong>
+                }
             </div>
 
-            <div hide-if-null="request_id" class="request-id">Request Id: @requestId</div>
+            @if (request_id != null)
+            {
+                <div class="request-id">Request Id: @request_id</div>
+            }
         </div>
     </div>
 </div>

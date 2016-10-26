@@ -15,7 +15,12 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityServer4.Contrib.Mem
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityServer4.Contrib.Membership.ClientDemo", "..\samples\IdentityServer4.Contrib.Membership.ClientDemo\IdentityServer4.Contrib.Membership.ClientDemo.xproj", "{FD726027-AC69-4049-B01F-51067F45C3A7}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityServer4.Contrib.Membership.IdsvrDemo", "..\samples\IdentityServer4.Contrib.Membership.IdsvrDemo\IdentityServer4.Contrib.Membership.IdsvrDemo.xproj", "{5446CAE0-3AAF-45EF-93B4-1A81BD0B31AF}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityServer4.Contrib.Membership.IdsvrDemo", "..\samples\IdentityServer4.Contrib.Membership.IdsvrDemo\IdentityServer4.Contrib.Membership.IdsvrDemo.xproj", "{64EB80AC-8571-46C2-96BA-AED8141C9872}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B870208D-8C01-421B-B560-D8CFDD40A7AE}"
+	ProjectSection(SolutionItems) = preProject
+		..\samples\global.json = ..\samples\global.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +40,10 @@ Global
 		{FD726027-AC69-4049-B01F-51067F45C3A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD726027-AC69-4049-B01F-51067F45C3A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD726027-AC69-4049-B01F-51067F45C3A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5446CAE0-3AAF-45EF-93B4-1A81BD0B31AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5446CAE0-3AAF-45EF-93B4-1A81BD0B31AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5446CAE0-3AAF-45EF-93B4-1A81BD0B31AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5446CAE0-3AAF-45EF-93B4-1A81BD0B31AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64EB80AC-8571-46C2-96BA-AED8141C9872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64EB80AC-8571-46C2-96BA-AED8141C9872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64EB80AC-8571-46C2-96BA-AED8141C9872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64EB80AC-8571-46C2-96BA-AED8141C9872}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +52,6 @@ Global
 		{128F0DF1-A19D-4C29-95B8-D5A7AB236D9C} = {4FAF2C3C-762F-4AB1-ABB4-2F939616796A}
 		{ED1E6D2D-5BA0-4B0D-AD8F-B3B3F4F8235F} = {35FB7BA5-FD0D-48C4-9C74-D4D994489122}
 		{FD726027-AC69-4049-B01F-51067F45C3A7} = {CCEB1CC1-0531-4C4C-BFD9-B9979FDD93EC}
-		{5446CAE0-3AAF-45EF-93B4-1A81BD0B31AF} = {CCEB1CC1-0531-4C4C-BFD9-B9979FDD93EC}
+		{64EB80AC-8571-46C2-96BA-AED8141C9872} = {CCEB1CC1-0531-4C4C-BFD9-B9979FDD93EC}
 	EndGlobalSection
 EndGlobal
