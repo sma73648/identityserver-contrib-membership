@@ -28,13 +28,13 @@ namespace IdentityServer4.Contrib.Membership
         public async Task<IEnumerable<Claim>> GetClaimsFromAccount(string username)
         {
             var user = await membershipService.GetUserAsync(username).ConfigureAwait(false);
-            return user == null ? new List<Claim>() : GetClaimsFromAccount(user);
+            return user == null ? Enumerable.Empty<Claim>() : await GetClaimsFromAccount(user).ConfigureAwait(false);
         }
 
         /// <summary>Gets the Claims from the Membership User</summary>
         /// <param name="user">Membership User</param>
         /// <returns>List of Claims</returns>
-        public IEnumerable<Claim> GetClaimsFromAccount(MembershipUser user)
+        public async Task<IEnumerable<Claim>> GetClaimsFromAccount(MembershipUser user)
         {
             var claims = new List<Claim>{
                 new Claim(JwtClaimTypes.Subject, user.GetSubjectId()),
@@ -48,9 +48,8 @@ namespace IdentityServer4.Contrib.Membership
             // Get the roles ala the roles provider if required
             if (options.UseRoleProviderSource)
             {
-                var roleClaims = roleService.GetRolesForUser(user.UserName).Result
-                                            .Select(x => new Claim(JwtClaimTypes.Role, x));
-                claims.AddRange(roleClaims);
+                var roleClaims = await roleService.GetRolesForUser(user.UserName).ConfigureAwait(false);
+                claims.AddRange(roleClaims.Select(x => new Claim(JwtClaimTypes.Role, x)));
             }
 
             return claims;

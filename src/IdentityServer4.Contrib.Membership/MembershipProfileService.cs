@@ -57,7 +57,7 @@ namespace IdentityServer4.Contrib.Membership
                 return;
             }
 
-            var claims = claimsService.GetClaimsFromAccount(user);
+            var claims = await claimsService.GetClaimsFromAccount(user).ConfigureAwait(false);
             if (!context.AllClaimsRequested && requestedClaimTypes.Count > 0)
             {
                 claims = claims.Where(x => requestedClaimTypes.Contains(x.Type));

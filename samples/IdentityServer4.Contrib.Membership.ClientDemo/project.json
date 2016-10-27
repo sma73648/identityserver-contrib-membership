@@ -23,5 +23,9 @@
     "netcoreapp1.0": {
       "imports": "dnxcore50"
     }
+  },
+
+  "runtimes": {
+    "win7-x64": {}
   }
 }

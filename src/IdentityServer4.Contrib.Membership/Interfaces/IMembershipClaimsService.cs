@@ -14,6 +14,6 @@ namespace IdentityServer4.Contrib.Membership.Interfaces
         /// <summary>Gets the Claims from the Membership User</summary>
         /// <param name="user">Membership User</param>
         /// <returns>List of Claims</returns>
-        IEnumerable<Claim> GetClaimsFromAccount(MembershipUser user);
+        Task<IEnumerable<Claim>> GetClaimsFromAccount(MembershipUser user);
     }
 }
