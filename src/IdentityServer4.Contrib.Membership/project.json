@@ -15,5 +15,11 @@
         "portable-net45+win8"
       ]
     }
+  },
+
+  "scripts": {
+    "postcompile": [
+      "dotnet pack --no-build --configuration %compile:Configuration%"
+    ]
   }
 }
