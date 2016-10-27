@@ -16,11 +16,13 @@
       <group targetFramework=".NETFramework4.5.2">
         <dependency id="System.Data.Common" version="[4.1.0, )" />
         <dependency id="System.Data.SqlClient" version="[4.1.0, )" />
+        <dependency id="System.Security.Cryptography.Algorithms" version="[4.2.0, )">
         <dependency id="IdentityServer4" version="[1.0.0-rc2, )" />
       </group>
       <group targetFramework=".NETStandard1.6">        
         <dependency id="System.Data.Common" version="[4.1.0, )" />
         <dependency id="System.Data.SqlClient" version="[4.1.0, )" />
+        <dependency id="System.Security.Cryptography.Algorithms" version="[4.2.0, )">
         <dependency id="IdentityServer4" version="[1.0.0-rc2, )" />
       </group>
     </dependencies>

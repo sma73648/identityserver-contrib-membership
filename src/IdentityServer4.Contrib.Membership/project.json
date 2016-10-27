@@ -5,7 +5,8 @@
     "NETStandard.Library": "1.6.0",
     "System.Data.Common": "4.1.0",
     "System.Data.SqlClient": "4.1.0",
-    "IdentityServer4": "1.0.0-rc2"
+    "IdentityServer4": "1.0.0-rc2",
+    "System.Security.Cryptography.Algorithms": "4.2.0"
   },
 
   "frameworks": {

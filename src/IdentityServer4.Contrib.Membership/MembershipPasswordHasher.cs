@@ -28,11 +28,12 @@ namespace IdentityServer4.Contrib.Membership
 
             if (passwordFormat == 1)
             {
-                // MembershipPasswordFormat.Hashed 
-                HashAlgorithm hm = new HMACSHA1(); // HashAlgorithm.Create("SHA1");
+                HashAlgorithm hm = SHA1.Create();
+
+                // MembershipPasswordFormat.Hashed                 
                 if (hm is KeyedHashAlgorithm)
                 {
-                    KeyedHashAlgorithm kha = (KeyedHashAlgorithm)hm;
+                    var kha = (KeyedHashAlgorithm)hm;
                     if (kha.Key.Length == bSalt.Length)
                     {
                         kha.Key = bSalt;
