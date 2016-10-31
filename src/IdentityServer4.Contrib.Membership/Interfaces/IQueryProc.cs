@@ -19,8 +19,8 @@ namespace IdentityServer4.Contrib.Membership.Interfaces
     {
         new IQueryProc<T> Param(string paramName, object value);
 
-        Func<IDictionary<string, object>, T> ResultMapper { get; }
+        Func<IList<KeyValuePair<string, object>>, T> ResultMapper { get; }
 
-        IQueryProc<T> Map(Func<IDictionary<string, object>, T> mapper);
+        IQueryProc<T> Map(Func<IList<KeyValuePair<string, object>>, T> mapper);
     }
 }

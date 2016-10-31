@@ -29,7 +29,7 @@ namespace IdentityServer4.Contrib.Membership.DataAccess
         /// <returns>Query Proc</returns>
         public IQueryProc Param(string paramName, object value)
         {
-            Parameters[paramName] = value;
+            Parameters.Add(new KeyValuePair<string, object>(paramName, value));            
             return this;
         }
     }
@@ -46,12 +46,12 @@ namespace IdentityServer4.Contrib.Membership.DataAccess
         }
 
         /// <summary>Result Mapper</summary>
-        public Func<IDictionary<string, object>, T> ResultMapper { get; private set; }
+        public Func<IList<KeyValuePair<string, object>>, T> ResultMapper { get; private set; }
 
         /// <summary>Sets the Result Mapper</summary>
         /// <param name="mapper">Result Mapper</param>
         /// <returns>Query Proc</returns>
-        public IQueryProc<T> Map(Func<IDictionary<string, object>, T> mapper)
+        public IQueryProc<T> Map(Func<IList<KeyValuePair<string, object>>, T> mapper)
         {
             ResultMapper = mapper;
             return this;
@@ -63,7 +63,7 @@ namespace IdentityServer4.Contrib.Membership.DataAccess
         /// <returns>Query Proc</returns>
         public new IQueryProc<T> Param(string paramName, object value)
         {
-            Parameters[paramName] = value;
+            Parameters.Add(new KeyValuePair<string, object>(paramName, value));
             return this;
         }
     }
