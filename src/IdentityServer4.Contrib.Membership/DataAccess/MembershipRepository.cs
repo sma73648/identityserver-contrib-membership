@@ -121,5 +121,23 @@ namespace IdentityServer4.Contrib.Membership.DataAccess
                 .Param("@LastActivityDate", isPasswordCorrect ? DateTime.UtcNow : membershipSecurity.LastActivityDate)
             );
         }
+
+        /// <summary>Update password for user</summary>
+        /// <param name="userName">Username</param>
+        /// <param name="password">Password</param>
+        /// <param name="passwordSalt">Password Salt</param>
+        /// <param name="passwordFormat">Password Format</param>
+        /// <returns></returns>
+        public Task UpdatePassword(string userName, string password, string passwordSalt, int passwordFormat)
+        {
+            return context.Execute(new QueryProc("aspnet_Membership_SetPassword")
+                .Param("@ApplicationName", options.ApplicationName)
+                .Param("@UserName", userName)
+                .Param("@NewPassword", password)
+                .Param("@PasswordSalt", passwordSalt)
+                .Param("@CurrentTimeUtc", DateTime.UtcNow)
+                .Param("@PasswordFormat", passwordFormat)
+            );
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace IdentityServer4.Contrib.Membership
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
@@ -42,7 +43,11 @@ namespace IdentityServer4.Contrib.Membership
                 new Claim(JwtClaimTypes.Email, user.Email),
 
                 new Claim(JwtClaimTypes.IdentityProvider, options.IdentityProvider),
-                new Claim(JwtClaimTypes.AuthenticationTime, DateTime.UtcNow.ToEpochTime().ToString())
+                new Claim(JwtClaimTypes.AuthenticationTime, DateTime.UtcNow.ToEpochTime().ToString()),
+
+                new Claim(MembershipClaimTypes.AccountCreated, user.AccountCreated.ToEpochTime().ToString()),
+                new Claim(MembershipClaimTypes.LastActivity, user.LastActivity.ToEpochTime().ToString()),
+                new Claim(MembershipClaimTypes.PasswordChanged, user.PasswordChanged.ToEpochTime().ToString())
             };
 
             // Get the roles ala the roles provider if required
