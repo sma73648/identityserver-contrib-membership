@@ -40,6 +40,7 @@ namespace IdentityServer4.Contrib.Membership
                 UserName = user.UserName,
                 Email = user.Email,
                 IsLockedOut = user.IsLockedOut,
+                IsApproved = user.IsApproved,
                 AccountCreated = user.CreateDate,
                 LastActivity = user.LastActivityDate,
                 PasswordChanged = user.LastPasswordChangedDate
@@ -62,6 +63,7 @@ namespace IdentityServer4.Contrib.Membership
                 UserName = user.UserName,
                 Email = user.Email,
                 IsLockedOut = user.IsLockedOut,
+                IsApproved = user.IsApproved,
                 AccountCreated = user.CreateDate,
                 LastActivity = user.LastActivityDate,
                 PasswordChanged = user.LastPasswordChangedDate

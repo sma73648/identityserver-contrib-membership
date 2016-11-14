@@ -20,6 +20,9 @@ namespace IdentityServer4.Contrib.Membership
         /// <summary>Is the user locked out</summary>
         public bool IsLockedOut { get; set; }
 
+        /// <summary>Is the user approved</summary>
+        public bool IsApproved { get; set; }
+
         /// <summary>Account Created</summary>
         public DateTime AccountCreated { get; set; }
 
