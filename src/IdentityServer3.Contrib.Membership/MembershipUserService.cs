@@ -13,6 +13,7 @@ namespace IdentityServer3.Contrib.Membership
     using Core.Models;
     using Core.Services.Default;
     using Helpers;
+    using IdentityModel;
     using Interfaces;
 
     /// <summary>Identity Server User Service for Membership Database</summary>
@@ -70,9 +71,16 @@ namespace IdentityServer3.Contrib.Membership
         protected virtual IEnumerable<Claim> GetClaimsFromAccount(MembershipUser user)
         {
             var claims = new List<Claim>{
-                new Claim(Constants.ClaimTypes.Subject, user.UserId.ToString("N")),
-                new Claim(Constants.ClaimTypes.PreferredUserName, user.UserName),
-                new Claim(Constants.ClaimTypes.Email, user.Email)
+                new Claim(JwtClaimTypes.Subject, user.UserId.ToString("N")),
+                new Claim(JwtClaimTypes.PreferredUserName, user.UserName),
+                new Claim(JwtClaimTypes.Email, user.Email),
+
+                new Claim(JwtClaimTypes.IdentityProvider, options.IdentityProvider),
+                new Claim(JwtClaimTypes.AuthenticationTime, DateTime.UtcNow.ToEpochTime().ToString()),
+
+                new Claim(MembershipClaimTypes.AccountCreated, user.AccountCreated.ToUtcEpoch().ToString()),
+                new Claim(MembershipClaimTypes.LastActivity, user.LastActivity.ToUtcEpoch().ToString()),
+                new Claim(MembershipClaimTypes.PasswordChanged, user.PasswordChanged.ToUtcEpoch().ToString())
             };
 
             // Get the roles ala the roles provider if required

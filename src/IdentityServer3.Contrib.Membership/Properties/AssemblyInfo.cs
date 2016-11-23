@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("IdentityServer3.Membership")]
+[assembly: AssemblyTitle("IdentityServer3.Contrib.Membership")]
 [assembly: AssemblyDescription("An IdentityServer plugin for authenticating against a ASP.NET 2.0 Membership Database")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MacLean Electrical")]
-[assembly: AssemblyProduct("IdentityServer3.Membership")]
+[assembly: AssemblyProduct("IdentityServer3.Contrib.Membership")]
 [assembly: AssemblyCopyright("Copyright ©2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

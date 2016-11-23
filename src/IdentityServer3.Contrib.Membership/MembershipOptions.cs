@@ -12,6 +12,7 @@ namespace IdentityServer3.Contrib.Membership
         {
             MaxInvalidPasswordAttempts = 5;
             PasswordAttemptWindow = 10;
+            IdentityProvider = "idsvr";
         }
 
         /// <summary>
@@ -39,5 +40,10 @@ namespace IdentityServer3.Contrib.Membership
         /// The number of seconds before a reattempt can be made
         /// </summary>
         public int PasswordAttemptWindow { get; set; }
+
+        /// <summary>
+        /// The Identity Provider
+        /// </summary>
+        public string IdentityProvider { get; set; }
     }
 }

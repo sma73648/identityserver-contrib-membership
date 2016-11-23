@@ -6,6 +6,7 @@ namespace IdentityServer3.Contrib.Membership.DataAccess
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
 
     public static class SqlDataHelperExtensions
     {
@@ -14,24 +15,22 @@ namespace IdentityServer3.Contrib.Membership.DataAccess
         /// <param name="dictionary">Dictionary containing database entries</param>
         /// <param name="name">Index value to be read</param>
         /// <returns>Returning value</returns>
-        public static T Get<T>(this IDictionary<string, object> dictionary, string name)
+        public static T Get<T>(this IEnumerable<KeyValuePair<string, object>> list, string name)
         {
-            var obj = dictionary[name];
-
-            if (obj == null || obj == DBNull.Value)
+            var foundItem = list.FirstOrDefault(x => x.Key == name);
+            if (foundItem.Value == null || foundItem.Value == DBNull.Value)
             {
                 return default(T);
             }
-
-            return (T)obj;
+            return (T)foundItem.Value;
         }
 
         /// <summary>Creates a Dictionary based on the current entry being read by a Data Reader</summary>
         /// <param name="reader">Data Reader</param>
         /// <returns>Dictionary containing Database entries</returns>
-        public static IDictionary<string, object> ToDictionary(this IDataReader reader)
+        public static IList<KeyValuePair<string, object>> ToDictionary(this IDataReader reader)
         {
-            var results = new Dictionary<string, object>();
+            var results = new List<KeyValuePair<string, object>>();
 
             for (var i = 0; i < reader.FieldCount; i++)
             {
@@ -40,9 +39,8 @@ namespace IdentityServer3.Contrib.Membership.DataAccess
                 {
                     name = i.ToString();
                 }
-                results[name] = reader.GetValue(i);
+                results.Add(new KeyValuePair<string, object>(name, reader.GetValue(i)));
             }
-
             return results;
         }
     }

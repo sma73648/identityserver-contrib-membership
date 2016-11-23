@@ -38,7 +38,11 @@ namespace IdentityServer3.Contrib.Membership
                 UserId  = user.UserId,
                 UserName = user.UserName,
                 Email = user.Email,
-                IsLockedOut = user.IsLockedOut
+                IsLockedOut = user.IsLockedOut,
+                IsApproved = user.IsApproved,
+                AccountCreated = user.CreateDate,
+                LastActivity = user.LastActivityDate,
+                PasswordChanged = user.LastPasswordChangedDate
             };
         }
 
@@ -57,7 +61,11 @@ namespace IdentityServer3.Contrib.Membership
                 UserId = user.UserId,
                 UserName = user.UserName,
                 Email = user.Email,
-                IsLockedOut = user.IsLockedOut
+                IsLockedOut = user.IsLockedOut,
+                IsApproved = user.IsApproved,
+                AccountCreated = user.CreateDate,
+                LastActivity = user.LastActivityDate,
+                PasswordChanged = user.LastPasswordChangedDate
             };
         }
 

@@ -12,5 +12,10 @@ namespace IdentityServer3.Contrib.Membership.Tests.TestHelpers
         {
             claim.ShouldBeEquivalentTo(new Claim(claimType, claimValue), opt => opt.Including(c => c.Type).Including(c => c.Value));
         }
+
+        public static void ShouldBeClaimType(this Claim claim, string claimType)
+        {
+            claim.Type.Should().Be(claimType);
+        }
     }
 }
