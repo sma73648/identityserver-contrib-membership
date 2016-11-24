@@ -221,7 +221,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
             // Assert
             var issuedClaims = context.IssuedClaims.ToList();
 
-            issuedClaims.Should().HaveCount(9);
+            issuedClaims.Should().HaveCount(8);
 
             issuedClaims.ShouldContain(JwtClaimTypes.Subject, userId.ToString("N"));
             issuedClaims.ShouldContain(JwtClaimTypes.PreferredUserName, "username@test.com");
@@ -275,7 +275,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
             // Assert
             var issuedClaims = context.IssuedClaims.ToList();
 
-            issuedClaims.Should().HaveCount(12);
+            issuedClaims.Should().HaveCount(11);
 
             issuedClaims.ShouldContain(JwtClaimTypes.Subject, userId.ToString("N"));
             issuedClaims.ShouldContain(JwtClaimTypes.PreferredUserName, "username@test.com");
@@ -476,10 +476,9 @@ namespace IdentityServer3.Contrib.Membership.Tests
             context.AuthenticateResult.HasSubject.Should().BeTrue();
 
             var issuedClaims = context.AuthenticateResult.User.Claims.ToList();
-            issuedClaims.Should().HaveCount(14);
+            issuedClaims.Should().HaveCount(13);
 
             issuedClaims.ShouldContain(JwtClaimTypes.Subject, userId.ToString("N"));
-            issuedClaims.ShouldContain(ClaimTypes.NameIdentifier, userId.ToString("N"));
             issuedClaims.ShouldContain(JwtClaimTypes.Name, "test@test.com");
             issuedClaims.ShouldContain(JwtClaimTypes.AuthenticationMethod, "password");
             issuedClaims.ShouldContain(JwtClaimTypes.IdentityProvider, "idsrv");
@@ -532,7 +531,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
             context.AuthenticateResult.HasSubject.Should().BeTrue();
 
             var issuedClaims = context.AuthenticateResult.User.Claims.ToList();
-            issuedClaims.Should().HaveCount(11);
+            issuedClaims.Should().HaveCount(10);
 
             issuedClaims.ShouldContain(Constants.ClaimTypes.Subject, userId.ToString("N"));
             issuedClaims.ShouldContain(Constants.ClaimTypes.Name, "test@test.com");
