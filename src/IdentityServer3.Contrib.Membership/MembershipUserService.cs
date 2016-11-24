@@ -70,8 +70,10 @@ namespace IdentityServer3.Contrib.Membership
         /// <returns>List of Claims</returns>
         protected virtual IEnumerable<Claim> GetClaimsFromAccount(MembershipUser user)
         {
-            var claims = new List<Claim>{
+            var claims = new List<Claim>
+            {
                 new Claim(JwtClaimTypes.Subject, user.UserId.ToString("N")),
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString("N")),
                 new Claim(JwtClaimTypes.PreferredUserName, user.UserName),
                 new Claim(JwtClaimTypes.Email, user.Email),
 

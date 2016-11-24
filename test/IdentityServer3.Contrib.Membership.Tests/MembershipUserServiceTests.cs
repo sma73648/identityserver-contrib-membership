@@ -221,11 +221,11 @@ namespace IdentityServer3.Contrib.Membership.Tests
             // Assert
             var issuedClaims = context.IssuedClaims.ToList();
 
-            issuedClaims.Should().HaveCount(8);
+            issuedClaims.Should().HaveCount(9);
 
-            issuedClaims[0].ShouldBeEquivalentTo(JwtClaimTypes.Subject, userId.ToString("N"));
-            issuedClaims[1].ShouldBeEquivalentTo(JwtClaimTypes.PreferredUserName, "username@test.com");
-            issuedClaims[2].ShouldBeEquivalentTo(JwtClaimTypes.Email, "email@test.com");
+            issuedClaims.ShouldContain(JwtClaimTypes.Subject, userId.ToString("N"));
+            issuedClaims.ShouldContain(JwtClaimTypes.PreferredUserName, "username@test.com");
+            issuedClaims.ShouldContain(JwtClaimTypes.Email, "email@test.com");
 
             A.CallTo(() => membershipService.GetUserAsync(userId));
         }
@@ -275,16 +275,16 @@ namespace IdentityServer3.Contrib.Membership.Tests
             // Assert
             var issuedClaims = context.IssuedClaims.ToList();
 
-            issuedClaims.Should().HaveCount(11);
+            issuedClaims.Should().HaveCount(12);
 
-            issuedClaims[0].ShouldBeEquivalentTo(JwtClaimTypes.Subject, userId.ToString("N"));
-            issuedClaims[1].ShouldBeEquivalentTo(JwtClaimTypes.PreferredUserName, "username@test.com");
-            issuedClaims[2].ShouldBeEquivalentTo(JwtClaimTypes.Email, "email@test.com");
-            issuedClaims[3].ShouldBeEquivalentTo(JwtClaimTypes.IdentityProvider, "idsvr");
+            issuedClaims.ShouldContain(JwtClaimTypes.Subject, userId.ToString("N"));
+            issuedClaims.ShouldContain(JwtClaimTypes.PreferredUserName, "username@test.com");
+            issuedClaims.ShouldContain(JwtClaimTypes.Email, "email@test.com");
+            issuedClaims.ShouldContain(JwtClaimTypes.IdentityProvider, "idsvr");
 
-            issuedClaims[8].ShouldBeEquivalentTo(JwtClaimTypes.Role, "role1");
-            issuedClaims[9].ShouldBeEquivalentTo(JwtClaimTypes.Role, "role2");
-            issuedClaims[10].ShouldBeEquivalentTo(JwtClaimTypes.Role, "role3");
+            issuedClaims.ShouldContain(JwtClaimTypes.Role, "role1");
+            issuedClaims.ShouldContain(JwtClaimTypes.Role, "role2");
+            issuedClaims.ShouldContain(JwtClaimTypes.Role, "role3");
 
             A.CallTo(() => membershipService.GetUserAsync(userId));
         }
@@ -476,21 +476,22 @@ namespace IdentityServer3.Contrib.Membership.Tests
             context.AuthenticateResult.HasSubject.Should().BeTrue();
 
             var issuedClaims = context.AuthenticateResult.User.Claims.ToList();
-            issuedClaims.Should().HaveCount(13);
+            issuedClaims.Should().HaveCount(14);
 
-            issuedClaims[0].ShouldBeEquivalentTo(JwtClaimTypes.Subject, userId.ToString("N"));
-            issuedClaims[1].ShouldBeEquivalentTo(JwtClaimTypes.Name, "test@test.com");
-            issuedClaims[2].ShouldBeEquivalentTo(JwtClaimTypes.AuthenticationMethod, "password");            
-            issuedClaims[3].ShouldBeEquivalentTo(JwtClaimTypes.IdentityProvider, "idsrv");
-            issuedClaims[4].ShouldBeClaimType(JwtClaimTypes.AuthenticationTime);               
-            issuedClaims[5].ShouldBeEquivalentTo(JwtClaimTypes.PreferredUserName, "test@test.com");
-            issuedClaims[6].ShouldBeEquivalentTo(JwtClaimTypes.Email, "email@test.com");
-            issuedClaims[7].ShouldBeClaimType(MembershipClaimTypes.AccountCreated);
-            issuedClaims[8].ShouldBeClaimType(MembershipClaimTypes.LastActivity);
-            issuedClaims[9].ShouldBeClaimType(MembershipClaimTypes.PasswordChanged);
-            issuedClaims[10].ShouldBeEquivalentTo(Constants.ClaimTypes.Role, "Role1");
-            issuedClaims[11].ShouldBeEquivalentTo(Constants.ClaimTypes.Role, "Role2");
-            issuedClaims[12].ShouldBeEquivalentTo(Constants.ClaimTypes.Role, "Role3");
+            issuedClaims.ShouldContain(JwtClaimTypes.Subject, userId.ToString("N"));
+            issuedClaims.ShouldContain(ClaimTypes.NameIdentifier, userId.ToString("N"));
+            issuedClaims.ShouldContain(JwtClaimTypes.Name, "test@test.com");
+            issuedClaims.ShouldContain(JwtClaimTypes.AuthenticationMethod, "password");
+            issuedClaims.ShouldContain(JwtClaimTypes.IdentityProvider, "idsrv");
+            issuedClaims.ShouldContain(JwtClaimTypes.AuthenticationTime);
+            issuedClaims.ShouldContain(JwtClaimTypes.PreferredUserName, "test@test.com");
+            issuedClaims.ShouldContain(JwtClaimTypes.Email, "email@test.com");
+            issuedClaims.ShouldContain(MembershipClaimTypes.AccountCreated);
+            issuedClaims.ShouldContain(MembershipClaimTypes.LastActivity);
+            issuedClaims.ShouldContain(MembershipClaimTypes.PasswordChanged);
+            issuedClaims.ShouldContain(Constants.ClaimTypes.Role, "Role1");
+            issuedClaims.ShouldContain(Constants.ClaimTypes.Role, "Role2");
+            issuedClaims.ShouldContain(Constants.ClaimTypes.Role, "Role3");
 
             A.CallTo(() => membershipService.GetUserAsync("test@test.com")).MustHaveHappened();
             A.CallTo(() => membershipService.ValidateUser("test@test.com", "password123")).MustHaveHappened();
@@ -531,15 +532,15 @@ namespace IdentityServer3.Contrib.Membership.Tests
             context.AuthenticateResult.HasSubject.Should().BeTrue();
 
             var issuedClaims = context.AuthenticateResult.User.Claims.ToList();
-            issuedClaims.Should().HaveCount(10);
+            issuedClaims.Should().HaveCount(11);
 
-            issuedClaims[0].ShouldBeEquivalentTo(Constants.ClaimTypes.Subject, userId.ToString("N"));
-            issuedClaims[1].ShouldBeEquivalentTo(Constants.ClaimTypes.Name, "test@test.com");
-            issuedClaims[2].ShouldBeEquivalentTo(Constants.ClaimTypes.AuthenticationMethod, "password");
-            issuedClaims[3].ShouldBeEquivalentTo(Constants.ClaimTypes.IdentityProvider, "idsrv");
-            issuedClaims[4].Type.Should().Be(Constants.ClaimTypes.AuthenticationTime);
-            issuedClaims[5].ShouldBeEquivalentTo(Constants.ClaimTypes.PreferredUserName, "test@test.com");
-            issuedClaims[6].ShouldBeEquivalentTo(Constants.ClaimTypes.Email, "email@test.com");
+            issuedClaims.ShouldContain(Constants.ClaimTypes.Subject, userId.ToString("N"));
+            issuedClaims.ShouldContain(Constants.ClaimTypes.Name, "test@test.com");
+            issuedClaims.ShouldContain(Constants.ClaimTypes.AuthenticationMethod, "password");
+            issuedClaims.ShouldContain(Constants.ClaimTypes.IdentityProvider, "idsrv");
+            issuedClaims.ShouldContain(Constants.ClaimTypes.AuthenticationTime);
+            issuedClaims.ShouldContain(Constants.ClaimTypes.PreferredUserName, "test@test.com");
+            issuedClaims.ShouldContain(Constants.ClaimTypes.Email, "email@test.com");
 
             A.CallTo(() => membershipService.GetUserAsync("test@test.com")).MustHaveHappened();
             A.CallTo(() => membershipService.ValidateUser("test@test.com", "password123")).MustHaveHappened();
