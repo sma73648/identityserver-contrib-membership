@@ -32,7 +32,7 @@ namespace IdentityServer3.Contrib.Membership.DataAccess
             return membershipContext.Execute(new QueryProc<string>("aspnet_UsersInRoles_GetRolesForUser")
                 .Param("@ApplicationName", options.ApplicationName)
                 .Param("@UserName", username)
-                .Map(reader => reader.Get<string>("0")));
+                .Map(reader => reader.Get<string>("RoleName")));
         }
     }
 }
