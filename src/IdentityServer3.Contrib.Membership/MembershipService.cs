@@ -4,6 +4,7 @@
 namespace IdentityServer3.Contrib.Membership
 {
     using System;
+    using System.Security.Cryptography;
     using System.Threading.Tasks;
     using Helpers;
     using Interfaces;
@@ -96,6 +97,23 @@ namespace IdentityServer3.Contrib.Membership
             }
 
             return isPasswordCorrect;
+        }
+
+        /// <summary>Updates the password for the given username</summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public async Task UpdatePassword(string username, string password)
+        {
+            // This is how asp.net membership generates the salt
+            var rng = RandomNumberGenerator.Create();
+            var buf = new byte[16];
+            rng.GetBytes(buf);
+            var salt = Convert.ToBase64String(buf);
+
+            var encryptedPassword = membershipPasswordHasher.EncryptPassword(password, 1, salt);
+
+            await membershipRepository.UpdatePassword(username, encryptedPassword, salt, 1);
         }
     }
 }

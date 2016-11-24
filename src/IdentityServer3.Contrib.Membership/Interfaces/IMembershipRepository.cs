@@ -16,5 +16,7 @@ namespace IdentityServer3.Contrib.Membership.Interfaces
         Task<MembershipSecurity> GetUserPassword(string username);
 
         Task UpdateUserInfo(string userName, MembershipSecurity membershipSecurity, bool isPasswordCorrect);
+
+        Task UpdatePassword(string userName, string password, string passwordSalt, int passwordFormat);
     }
 }
