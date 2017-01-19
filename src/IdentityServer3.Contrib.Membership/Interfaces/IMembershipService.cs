@@ -25,5 +25,10 @@ namespace IdentityServer3.Contrib.Membership.Interfaces
         /// <param name="password">Password</param>
         /// <returns>True if valid, False if not</returns>
         Task<bool> ValidateUser(string username, string password);
+
+        /// <summary>Updates the password for the given username</summary>
+        /// <param name="username">Username</param>
+        /// <param name="password">Password</param>
+        Task UpdatePassword(string username, string password);
     }
 }
