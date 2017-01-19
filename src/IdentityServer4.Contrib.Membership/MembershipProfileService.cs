@@ -52,13 +52,13 @@ namespace IdentityServer4.Contrib.Membership
             if (user == null) throw new ArgumentException("Invalid subject identifier");
 
             var requestedClaimTypes = context.RequestedClaimTypes.ToList();
-            if (!context.AllClaimsRequested && requestedClaimTypes.Count == 0)
+            if (!requestedClaimTypes.Any())
             {
                 return;
             }
 
             var claims = await claimsService.GetClaimsFromAccount(user).ConfigureAwait(false);
-            if (!context.AllClaimsRequested && requestedClaimTypes.Count > 0)
+            if (requestedClaimTypes.Count > 0)
             {
                 claims = claims.Where(x => requestedClaimTypes.Contains(x.Type));
             }

@@ -3,7 +3,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 namespace IdentityServer4.Contrib.Membership.IdsvrDemo.Controllers
 {
-    using System.Linq;
     using System.Security.Claims;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
@@ -15,10 +14,12 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo.Controllers
     using Models;
     using Services;
     using Stores;
+    using Extensions;
 
     /// <summary>
     /// This is a sample login controller taken from the original IdentityServer4 <a href="https://github.com/IdentityServer/IdentityServer4.Samples/">Samples.</a>
     /// </summary>
+    [SecurityHeaders]
     public class AccountController : Controller
     {
         private readonly IMembershipService membershipService;
@@ -61,8 +62,7 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo.Controllers
                     // issue authentication cookie with subject ID and username
                     var user = await membershipService.GetUserAsync(model.Username);
 
-                    var principal = user.Create("idsvr");
-                    await HttpContext.Authentication.SignInAsync("idsvr", principal);
+                    await HttpContext.Authentication.SignInAsync(user.GetSubjectId(), user.UserName);
 
                     // make sure the returnUrl is still valid, and if yes - redirect back to authorize endpoint
                     if (interaction.IsValidReturnUrl(model.ReturnUrl))
@@ -116,18 +116,15 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo.Controllers
         [HttpGet]
         public async Task<IActionResult> Logout(string logoutId)
         {
-            var context = await interaction.GetLogoutContextAsync(logoutId);
-            if (context?.IsAuthenticatedLogout == true)
-            {
-                // if the logout request is authenticated, it's safe to automatically sign-out
-                return await Logout(new LogoutViewModel { LogoutId = logoutId });
-            }
-
             var vm = new LogoutViewModel
             {
                 LogoutId = logoutId
             };
-
+            var user = await HttpContext.GetIdentityServerUserAsync();
+            if (user == null || !user.Identity.IsAuthenticated)
+            {
+                return Redirect("~/");
+            }
             return View(vm);
         }
 

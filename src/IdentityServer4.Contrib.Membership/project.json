@@ -1,26 +1,35 @@
 ﻿{
-  "version": "1.0.0-*",
+  "version": "4.0.0-*",
+  "authors": [ "Stuart Banks" ],
+  "description": "An IdentityServer plugin for authenticating against a ASP.NET 2.0 Membership Database",
+
+  "packOptions": {
+    "tags": [ "IdentityServer" ],
+    "projectUrl": "https://github.com/MacLeanElectrical/identityserver-contrib-membership",
+    "licenseUrl": "https://www.mozilla.org/en-US/MPL/2.0/",
+    "iconUrl": "https://identityserver.github.io/Documentation/assets/images/icons/IDserver_icon128.jpg",
+    "releaseNotes": "Initial release",
+    "requireLicenseAcceptance": false
+  },
 
   "dependencies": {
-    "NETStandard.Library": "1.6.0",
+    "NETStandard.Library": "1.6.1",
+    "IdentityServer4": "1.0.2",
     "System.Data.Common": "4.1.0",
     "System.Data.SqlClient": "4.1.0",
-    "IdentityServer4": "1.0.0-rc2",
-    "System.Security.Cryptography.Algorithms": "4.2.0"
+    "System.Security.Cryptography.Algorithms": "4.3.0"
   },
 
   "frameworks": {
-    "netcoreapp1.0": {
+    "netstandard1.4": {
       "imports": [
         "dotnet5.6",
         "portable-net45+win8"
-      ]
+      ],
+      "dependencies": {
+        "System.Collections.Specialized": "4.3.0",
+        "System.Diagnostics.Process": "4.3.0"
+      }
     }
-  },
-
-  "scripts": {
-    "postcompile": [
-      "dotnet pack --no-build --configuration %compile:Configuration%"
-    ]
   }
 }

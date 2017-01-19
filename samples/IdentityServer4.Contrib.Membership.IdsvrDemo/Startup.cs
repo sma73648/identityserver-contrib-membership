@@ -11,6 +11,7 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo
     using System.Collections.Generic;
     using IdentityModel;
     using IdentityServer4.Models;
+    using Serilog;
 
     public class Startup
     {
@@ -31,33 +32,26 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo
         {
             services.AddMvc();
 
-            services
-                .AddDeveloperIdentityServer()
-                .AddInMemoryClients(Clients.Get())
-                .AddInMemoryScopes(Scopes.Get())
-                .AddMembershipService(new MembershipOptions
-                {
-                    ConnectionString = "Data Source=localhost;Initial Catalog=Membership;Integrated Security=True",
-                    ApplicationName = "Test" 
-                });
+            services.AddIdentityServer()
+                    .AddTemporarySigningCredential()
+                    .AddInMemoryClients(Clients.Get())
+                    .AddInMemoryIdentityResources(IdentityResources.Get())
+                    .AddMembershipService(new MembershipOptions
+                    {
+                        ConnectionString = "Data Source=localhost;Initial Catalog=Membership;Integrated Security=True",
+                        ApplicationName = "Test" 
+                    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
+            loggerFactory.AddSerilog();
 
+            app.UseDeveloperExceptionPage();
             app.UseStaticFiles();  
                       
             app.UseIdentityServer();
-
             app.UseMvcWithDefaultRoute();
         }
 
@@ -73,7 +67,7 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo
                         ClientId = "ServiceStack.SelfHost",
                         Enabled = true,
 
-                        AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
+                        AllowedGrantTypes = GrantTypes.Hybrid,
 
                         AccessTokenType = AccessTokenType.Jwt,
 
@@ -82,11 +76,20 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo
                             new Secret("F621F470-9731-4A25-80EF-67A6F7C5F4B8".Sha256())
                         },
 
-                        AllowAccessToAllScopes = true,
+                        AllowOfflineAccess = true,
 
                         RedirectUris = new List<string>
                         {
                             "http://localhost:5001/signin-oidc"
+                        },
+
+                        AllowedScopes = new List<string>
+                        {
+                            IdentityServerConstants.StandardScopes.OpenId,
+                            IdentityServerConstants.StandardScopes.Profile,
+                            IdentityServerConstants.StandardScopes.Email,
+
+                            "ServiceStack.SelfHost",
                         },
 
                         RequireConsent = false
@@ -95,29 +98,26 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo
             }
         }
 
-        static class Scopes
+        static class IdentityResources
         {
-            public static List<Scope> Get()
+            public static List<IdentityResource> Get()
             {
-                return new List<Scope>(StandardScopes.All)
-            {
-                StandardScopes.OfflineAccess,
-                new Scope
+                return new List<IdentityResource>
                 {
-                    Enabled = true,
-                    Name = "ServiceStack.SelfHost",
-                    Type = ScopeType.Identity,
-                    Claims = new List<ScopeClaim>
+                    new IdentityServer4.Models.IdentityResources.OpenId(),
+                    new IdentityServer4.Models.IdentityResources.Profile(),
+                    new IdentityServer4.Models.IdentityResources.Email(),
+                    new IdentityResource
                     {
-                        new ScopeClaim(JwtClaimTypes.Subject),
-                        new ScopeClaim(JwtClaimTypes.Name)
-                    },
-                    ScopeSecrets = new List<Secret>
-                    {
-                        new Secret("F621F470-9731-4A25-80EF-67A6F7C5F4B8".Sha256())
+                        Name = "ServiceStack.SelfHost",
+                        Enabled = true,
+                        UserClaims = new List<string>
+                        {
+                            JwtClaimTypes.Subject,
+                            JwtClaimTypes.Name
+                        }
                     }
-                }
-            };
+                };
             }
         }
     }

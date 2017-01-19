@@ -6,7 +6,7 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>64eb80ac-8571-46c2-96ba-aed8141c9872</ProjectGuid>
+    <ProjectGuid>65041166-aa5a-4941-8764-3ee24166958d</ProjectGuid>
     <RootNamespace>IdentityServer4.Contrib.Membership.IdsvrDemo</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
