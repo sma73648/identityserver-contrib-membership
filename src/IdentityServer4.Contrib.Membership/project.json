@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "4.0.0-*",
   "authors": [ "Stuart Banks" ],
   "description": "An IdentityServer plugin for authenticating against a ASP.NET 2.0 Membership Database",
@@ -15,9 +15,9 @@
   "dependencies": {
     "NETStandard.Library": "1.6.1",
     "IdentityServer4": "1.0.2",
-    "System.Data.Common": "4.1.0",
-    "System.Data.SqlClient": "4.1.0",
-    "System.Security.Cryptography.Algorithms": "4.3.0"
+    "System.Security.Cryptography.Algorithms": "4.3.0",
+    "System.Data.Common": "4.3.0",
+    "System.Data.SqlClient": "4.3.0"
   },
 
   "frameworks": {

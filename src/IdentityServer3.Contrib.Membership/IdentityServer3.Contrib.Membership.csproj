@@ -31,8 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IdentityModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\IdentityModel.1.11.0\lib\net45\IdentityModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="IdentityServer3, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\IdentityServer3.2.5.0\lib\net45\IdentityServer3.dll</HintPath>
+      <HintPath>..\..\packages\IdentityServer3.2.5.4\lib\net45\IdentityServer3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -44,6 +52,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
@@ -55,7 +64,9 @@
     <Compile Include="DataAccess\QueryProc.cs" />
     <Compile Include="DataAccess\RoleRepository.cs" />
     <Compile Include="DataAccess\SqlDataHelperExtensions.cs" />
+    <Compile Include="Helpers\DateTimeExtensions.cs" />
     <Compile Include="Helpers\Preconditions.cs" />
+    <Compile Include="MembershipClaimTypes.cs" />
     <Compile Include="MembershipOptions.cs" />
     <Compile Include="Interfaces\IMembershipContext.cs" />
     <Compile Include="Interfaces\IMembershipPasswordHasher.cs" />
