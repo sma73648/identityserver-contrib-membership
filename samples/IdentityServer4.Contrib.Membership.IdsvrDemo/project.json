@@ -7,7 +7,9 @@
       "version": "1.1.*"
     },
     "BundlerMinifier.Core": "2.2.306",
-    "IdentityServer4.Contrib.Membership": "4.0.0-*",
+    "IdentityServer4.Contrib.Membership": {
+      "target": "project"
+    },
     "Microsoft.AspNetCore.Diagnostics": "1.1.0",
     "Microsoft.AspNetCore.Hosting": "1.1.0",
     "Microsoft.AspNetCore.Mvc": "1.1.0",
