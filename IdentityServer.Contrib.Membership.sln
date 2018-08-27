@@ -11,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{B32D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer3.Contrib.Membership", "src\IdentityServer3.Contrib.Membership\IdentityServer3.Contrib.Membership.csproj", "{F93C0194-0A90-424E-B0CD-C3CE938D5858}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityServer4.Contrib.Membership", "src\IdentityServer4.Contrib.Membership\IdentityServer4.Contrib.Membership.xproj", "{128F0DF1-A19D-4C29-95B8-D5A7AB236D9C}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityServer4.Contrib.Membership", "src\IdentityServer4.Contrib.Membership\IdentityServer4.Contrib.Membership.csproj", "{128F0DF1-A19D-4C29-95B8-D5A7AB236D9C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer3.Contrib.Membership.Tests", "test\IdentityServer3.Contrib.Membership.Tests\IdentityServer3.Contrib.Membership.Tests.csproj", "{D8C047F2-B1AA-4B12-B6FA-DE91C3DAC907}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer3.Contrib.Membership.Demo", "samples\IdentityServer3.Contrib.Membership.Demo\IdentityServer3.Contrib.Membership.Demo.csproj", "{7950F85F-2797-4727-BD5D-9001B79D51D4}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityServer4.Contrib.Membership.ClientDemo", "samples\IdentityServer4.Contrib.Membership.ClientDemo\IdentityServer4.Contrib.Membership.ClientDemo.xproj", "{FD726027-AC69-4049-B01F-51067F45C3A7}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityServer4.Contrib.Membership.ClientDemo", "samples\IdentityServer4.Contrib.Membership.ClientDemo\IdentityServer4.Contrib.Membership.ClientDemo.csproj", "{FD726027-AC69-4049-B01F-51067F45C3A7}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityServer4.Contrib.Membership.IdsvrDemo", "samples\IdentityServer4.Contrib.Membership.IdsvrDemo\IdentityServer4.Contrib.Membership.IdsvrDemo.xproj", "{65041166-AA5A-4941-8764-3EE24166958D}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityServer4.Contrib.Membership.IdsvrDemo", "samples\IdentityServer4.Contrib.Membership.IdsvrDemo\IdentityServer4.Contrib.Membership.IdsvrDemo.csproj", "{65041166-AA5A-4941-8764-3EE24166958D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

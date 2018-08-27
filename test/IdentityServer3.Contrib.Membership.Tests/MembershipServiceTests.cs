@@ -19,7 +19,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
         {
             Action ctor = () => new MembershipService(null, null);
 
-            ctor.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("membershipRepository");
+            ctor.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("membershipRepository");
         }
 
         [Fact]
@@ -29,7 +29,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
 
             Action ctor = () => new MembershipService(repoFake, null);
 
-            ctor.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("membershipPasswordHasher");
+            ctor.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("membershipPasswordHasher");
         }
 
         [Fact]

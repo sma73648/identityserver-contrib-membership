@@ -15,7 +15,7 @@ namespace IdentityServer3.Contrib.Membership.Demo
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo
-                .LiterateConsole(outputTemplate: "{Timestamp:HH:mm} [{Level}] ({Name:l}){NewLine} {Message}{NewLine}{Exception}")
+                .Console(outputTemplate: "{Timestamp:HH:mm} [{Level}] ({Name:l}){NewLine} {Message}{NewLine}{Exception}")
                 .CreateLogger();
 
             IDisposable webApp = null;

@@ -17,7 +17,7 @@ namespace IdentityServer3.Contrib.Membership.Tests.DataAccess
         {
             Action ctor = () => new MembershipRepository(null, null);
 
-            ctor.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("context");
+            ctor.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("context");
         }
 
         [Fact]
@@ -27,7 +27,7 @@ namespace IdentityServer3.Contrib.Membership.Tests.DataAccess
 
             Action ctor = () => new MembershipRepository(contextFake, null);
 
-            ctor.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("options");
+            ctor.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("options");
         }
     }
 }

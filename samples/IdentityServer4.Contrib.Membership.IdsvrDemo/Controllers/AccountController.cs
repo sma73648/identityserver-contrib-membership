@@ -9,7 +9,7 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo.Controllers
     using Helpers;
     using IdentityServer4.Models;
     using Interfaces;
-    using Microsoft.AspNetCore.Http.Authentication;
+    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Mvc;
     using Models;
     using Services;
@@ -136,7 +136,7 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo.Controllers
         public async Task<IActionResult> Logout(LogoutViewModel model)
         {
             // delete authentication cookie
-            await HttpContext.Authentication.SignOutAsync();
+            await HttpContext.Authentication.SignOutAsync(IdentityServerConstants.DefaultCookieAuthenticationScheme);
 
             // set this so UI rendering sees an anonymous user
             HttpContext.User = new ClaimsPrincipal(new ClaimsIdentity());
@@ -167,7 +167,7 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo.Controllers
             returnUrl = "/account/externallogincallback?returnUrl=" + returnUrl;
 
             // start challenge and roundtrip the return URL
-            return new ChallengeResult(provider, new AuthenticationProperties
+            return new ChallengeResult(new AuthenticationProperties
             {
                 RedirectUri = returnUrl
             });
@@ -181,7 +181,7 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction("Index", "Home");
             }
         }
     }

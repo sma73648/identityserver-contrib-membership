@@ -27,7 +27,7 @@ namespace IdentityServer3.Contrib.Membership.Tests.TestHelpers
 
         public static void ShouldBeEquivalentTo(this Claim claim, string claimType, string claimValue)
         {
-            claim.ShouldBeEquivalentTo(new Claim(claimType, claimValue), opt => opt.Including(c => c.Type).Including(c => c.Value));
+            claim.Should().BeEquivalentTo(new Claim(claimType, claimValue), opt => opt.Including(c => c.Type).Including(c => c.Value));
         }
 
         public static void ShouldBeClaimType(this Claim claim, string claimType)

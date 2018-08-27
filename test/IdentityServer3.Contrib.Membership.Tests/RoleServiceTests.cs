@@ -19,7 +19,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
         {
             Action ctor = () => new RoleService(null);
 
-            ctor.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("roleRepository");
+            ctor.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("roleRepository");
         }
 
         [Theory]
@@ -35,7 +35,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
             Action getRolesForUser = () => { var result = service.GetRolesForUser(userName).Result; };
 
             // Assert
-            getRolesForUser.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("userName");
+            getRolesForUser.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("userName");
         }
 
         [Fact]

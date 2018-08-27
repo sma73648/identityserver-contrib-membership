@@ -25,7 +25,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
         {
             Action ctor = () => new MembershipUserService(null, null, null);
 
-            ctor.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("options");
+            ctor.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("options");
         }
 
         [Fact]
@@ -35,7 +35,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
 
             Action ctor = () => new MembershipUserService(options, null, null);
 
-            ctor.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("membershipService");
+            ctor.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("membershipService");
         }
 
         [Fact]
@@ -46,7 +46,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
 
             Action ctor = () => new MembershipUserService(options, membershipService, null);
 
-            ctor.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("roleService");
+            ctor.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("roleService");
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
             Action getProfileDataAsync = () => service.GetProfileDataAsync(context).Wait();
 
             // Act + Assert
-            getProfileDataAsync.ShouldThrow<ArgumentNullException>()
+            getProfileDataAsync.Should().Throw<ArgumentNullException>()
                 .And.ParamName.Should().Be("subject");
         }
 
@@ -86,7 +86,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
             Action getProfileDataAsync = () => service.GetProfileDataAsync(context).Wait();
 
             // Act + Assert
-            getProfileDataAsync.ShouldThrow<InvalidOperationException>();
+            getProfileDataAsync.Should().Throw<InvalidOperationException>();
         }
 
         [Theory]
@@ -114,7 +114,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
             Action getProfileDataAsync = () => service.GetProfileDataAsync(context).Wait();
 
             // Act + Assert
-            getProfileDataAsync.ShouldThrow<ArgumentException>().WithMessage("Invalid subject identifier");
+            getProfileDataAsync.Should().Throw<ArgumentException>().WithMessage("Invalid subject identifier");
         }
 
         [Fact]
@@ -142,7 +142,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
             Action getProfileDataAsync = () => service.GetProfileDataAsync(context).Wait();
 
             // Act
-            getProfileDataAsync.ShouldThrow<ArgumentException>().WithMessage("Invalid subject identifier");
+            getProfileDataAsync.Should().Throw<ArgumentException>().WithMessage("Invalid subject identifier");
 
             // Assert
             A.CallTo(() => membershipService.GetUserAsync(userId)).MustHaveHappened();
@@ -560,7 +560,7 @@ namespace IdentityServer3.Contrib.Membership.Tests
             Action isActiveAsync = () => service.IsActiveAsync(context).Wait();
 
             // Act + Assert
-            isActiveAsync.ShouldThrow<InvalidOperationException>().And.Message.Should().Be("sub claim is missing");
+            isActiveAsync.Should().Throw<InvalidOperationException>().And.Message.Should().Be("sub claim is missing");
         }
 
         [Theory]
