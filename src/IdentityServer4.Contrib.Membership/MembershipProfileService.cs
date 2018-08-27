@@ -84,7 +84,7 @@ namespace IdentityServer4.Contrib.Membership
                 return;
             }
 
-            context.IsActive = !user.IsLockedOut;
+            context.IsActive = !user.IsLockedOut && user.IsApproved;
         }
 
         private static Guid ParseGuid(string sub)

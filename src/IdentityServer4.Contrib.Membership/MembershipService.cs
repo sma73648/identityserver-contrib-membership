@@ -96,7 +96,9 @@ namespace IdentityServer4.Contrib.Membership
                                           .ConfigureAwait(false);
             }
 
-            return isPasswordCorrect;
+            var user = await membershipRepository.FindUserByUsername(username).ConfigureAwait(false);
+
+            return isPasswordCorrect && user?.IsApproved == true;
         }
 
         /// <summary>Updates the password for the given username</summary>
