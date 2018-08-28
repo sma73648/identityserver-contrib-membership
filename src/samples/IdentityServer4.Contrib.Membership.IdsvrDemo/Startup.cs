@@ -11,8 +11,6 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo
     using System.Collections.Generic;
     using IdentityModel;
     using IdentityServer4.Models;
-    using Microsoft.AspNetCore.Authentication.Cookies;
-    using Microsoft.AspNetCore.Identity;
     using Serilog;
 
     public class Startup
@@ -34,10 +32,8 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo
         {
             services.AddMvc();
 
-            services.AddAuthentication(IdentityConstants.ApplicationScheme);
-
             services.AddIdentityServer()
-                    .AddTemporarySigningCredential()
+                    .AddDeveloperSigningCredential()
                     .AddInMemoryClients(Clients.Get())
                     .AddInMemoryIdentityResources(IdentityResources.Get())
                     .AddMembershipService(new MembershipOptions

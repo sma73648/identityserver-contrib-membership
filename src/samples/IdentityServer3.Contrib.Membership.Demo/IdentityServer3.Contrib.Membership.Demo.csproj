@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net47</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="IdentityServer3" Version="2.5.4" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocol.Extensions" Version="1.0.4.403061554" />
+    <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="4.0.0" />
+    <PackageReference Include="Microsoft.Owin.Hosting" Version="4.0.0" />
+    <PackageReference Include="Microsoft.Owin.Security" Version="4.0.0" />
+    <PackageReference Include="Serilog" Version="2.7.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="ServiceStack" Version="4.0.56" />
+    <PackageReference Include="ServiceStack.Authentication.IdentityServer" Version="4.1.53" />
+    <PackageReference Include="ServiceStack.Razor" Version="4.0.56" />
+    <PackageReference Include="ServiceStack.Server" Version="4.0.56" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\IdentityServer3.Contrib.Membership\IdentityServer3.Contrib.Membership.csproj" />
+  </ItemGroup>
+</Project>

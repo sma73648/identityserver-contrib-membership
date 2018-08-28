@@ -111,5 +111,5 @@ namespace IdentityServer3.Contrib.Membership.Demo
                 }
             };
         }
-    }
+}
 }

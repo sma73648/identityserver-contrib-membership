@@ -10,6 +10,7 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo.Controllers
     using IdentityServer4.Models;
     using Interfaces;
     using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Models;
     using Services;
@@ -62,7 +63,7 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo.Controllers
                     // issue authentication cookie with subject ID and username
                     var user = await membershipService.GetUserAsync(model.Username);
 
-                    await HttpContext.Authentication.SignInAsync(user.GetSubjectId(), user.UserName);
+                    await HttpContext.SignInAsync(user.GetSubjectId(), ClaimsPrincipal.Current);
 
                     // make sure the returnUrl is still valid, and if yes - redirect back to authorize endpoint
                     if (interaction.IsValidReturnUrl(model.ReturnUrl))
@@ -114,14 +115,13 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo.Controllers
         /// Show logout page
         /// </summary>
         [HttpGet]
-        public async Task<IActionResult> Logout(string logoutId)
+        public IActionResult Logout(string logoutId)
         {
             var vm = new LogoutViewModel
             {
                 LogoutId = logoutId
             };
-            var user = await HttpContext.GetIdentityServerUserAsync();
-            if (user == null || !user.Identity.IsAuthenticated)
+            if (User == null || !User.Identity.IsAuthenticated)
             {
                 return Redirect("~/");
             }
@@ -136,7 +136,7 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo.Controllers
         public async Task<IActionResult> Logout(LogoutViewModel model)
         {
             // delete authentication cookie
-            await HttpContext.Authentication.SignOutAsync(IdentityServerConstants.DefaultCookieAuthenticationScheme);
+            await HttpContext.SignOutAsync();
 
             // set this so UI rendering sees an anonymous user
             HttpContext.User = new ClaimsPrincipal(new ClaimsIdentity());
@@ -167,7 +167,7 @@ namespace IdentityServer4.Contrib.Membership.IdsvrDemo.Controllers
             returnUrl = "/account/externallogincallback?returnUrl=" + returnUrl;
 
             // start challenge and roundtrip the return URL
-            return new ChallengeResult(new AuthenticationProperties
+            return new ChallengeResult(provider, new AuthenticationProperties
             {
                 RedirectUri = returnUrl
             });

@@ -16,7 +16,14 @@ namespace IdentityServer4.Contrib.Membership.Helpers
         /// <returns>Claims Principal</returns>
         public static ClaimsPrincipal Create(this MembershipUser user, string identityProvider, params Claim[] claims)
         {
-            return IdentityServerPrincipal.Create(user.GetSubjectId(), user.UserName, identityProvider, claims);
+            var identityServerUser = new IdentityServerUser(user.GetSubjectId())
+            {
+                DisplayName = user.UserName,
+                IdentityProvider = identityProvider,
+                AdditionalClaims = claims
+            };
+
+            return identityServerUser.CreatePrincipal();
         }
 
         /// <summary>

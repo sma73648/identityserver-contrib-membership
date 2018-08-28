@@ -9,9 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{74A6DE1B-9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{B32D51A2-39BF-4468-A80F-49A178D4AAC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer3.Contrib.Membership", "src\IdentityServer3.Contrib.Membership\IdentityServer3.Contrib.Membership.csproj", "{F93C0194-0A90-424E-B0CD-C3CE938D5858}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer3.Contrib.Membership", "IdentityServer3.Contrib.Membership\IdentityServer3.Contrib.Membership.csproj", "{F93C0194-0A90-424E-B0CD-C3CE938D5858}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityServer4.Contrib.Membership", "src\IdentityServer4.Contrib.Membership\IdentityServer4.Contrib.Membership.csproj", "{128F0DF1-A19D-4C29-95B8-D5A7AB236D9C}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityServer4.Contrib.Membership", "IdentityServer4.Contrib.Membership\IdentityServer4.Contrib.Membership.csproj", "{128F0DF1-A19D-4C29-95B8-D5A7AB236D9C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer3.Contrib.Membership.Tests", "test\IdentityServer3.Contrib.Membership.Tests\IdentityServer3.Contrib.Membership.Tests.csproj", "{D8C047F2-B1AA-4B12-B6FA-DE91C3DAC907}"
 EndProject
