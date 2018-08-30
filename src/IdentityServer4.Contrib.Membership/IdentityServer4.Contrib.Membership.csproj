@@ -19,6 +19,7 @@
     <PackageOutputPath>$(PackageOutputPath)</PackageOutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="GitLink" Version="3.1.0" />
     <PackageReference Include="IdentityServer4" Version="2.2.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
   </ItemGroup>
