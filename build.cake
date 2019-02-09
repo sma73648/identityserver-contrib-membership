@@ -190,7 +190,7 @@ Task("Publish-Nuget-Packages")
 
     nugetSourceUrl.ThrowIfNull(nameof(nugetSourceUrl));
     nugetApiKey.ThrowIfNull(nameof(nugetApiKey));
-    var nupkgFiles = GetFiles(nugetPackageDir.Path + "/**/*.nupkg");
+    var nupkgFiles = GetFiles(nugetPackageDir.Path + "/**/*.*nupkg");
 
     Information("Publishing nuget files: {0}", nupkgFiles.Dump());
 
@@ -200,7 +200,6 @@ Task("Publish-Nuget-Packages")
         NuGetPush(nupkgFile, new NuGetPushSettings {
             Source = nugetSourceUrl,
             ApiKey = nugetApiKey,
-
         });
     }
 });

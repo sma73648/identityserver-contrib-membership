@@ -11,7 +11,7 @@ namespace IdentityServer3.Contrib.Membership.Demo
     using ServiceStack.Authentication.IdentityServer.Enums;
 
     /// <summary>Service Stack App Host</summary>
-    class AppHost : AppHostBase
+    class AppHost : AppSelfHostBase
     {
         private readonly string serviceUrl;
 
