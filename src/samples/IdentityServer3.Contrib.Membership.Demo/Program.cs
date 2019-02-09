@@ -24,9 +24,10 @@ namespace IdentityServer3.Contrib.Membership.Demo
             {
                 webApp = WebApp.Start<Startup>("http://localhost:5000");
 
-                new AppHost("http://localhost:5001/").Init().Start("http://*:5001/");
-                "ServiceStack Self Host with Razor listening at http://localhost:5001 ".Print();
-                Process.Start("http://localhost:5001/");
+                const string hostUrl = "http://localhost:5001/";
+                new AppHost(hostUrl).Init().Start("http://*:5001/");
+                $"ServiceStack Self Host with Razor listening at {hostUrl} ".Print();
+                Process.Start(hostUrl);
 
                 Console.WriteLine("Identity Server running....");
                 Console.ReadLine();

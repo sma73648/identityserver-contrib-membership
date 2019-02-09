@@ -5,21 +5,24 @@
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="IdentityServer3" Version="2.5.4" />
+    <PackageReference Include="IdentityServer3" Version="2.6.3" />
     <PackageReference Include="Microsoft.IdentityModel.Protocol.Extensions" Version="1.0.4.403061554" />
-    <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="4.0.0" />
-    <PackageReference Include="Microsoft.Owin.Hosting" Version="4.0.0" />
-    <PackageReference Include="Microsoft.Owin.Security" Version="4.0.0" />
-    <PackageReference Include="Serilog" Version="2.7.1" />
+    <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="4.0.1" />
+    <PackageReference Include="Microsoft.Owin.Hosting" Version="4.0.1" />
+    <PackageReference Include="Microsoft.Owin.Security" Version="4.0.1" />
+    <PackageReference Include="Serilog" Version="2.8.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
-    <PackageReference Include="ServiceStack" Version="4.0.56" />
-    <PackageReference Include="ServiceStack.Authentication.IdentityServer" Version="4.1.53" />
-    <PackageReference Include="ServiceStack.Razor" Version="4.0.56" />
-    <PackageReference Include="ServiceStack.Server" Version="4.0.56" />
+    <PackageReference Include="ServiceStack" Version="5.4.0" />
+    <PackageReference Include="ServiceStack.Authentication.IdentityServer" Version="5.0.1" />
+    <PackageReference Include="ServiceStack.Razor" Version="5.4.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.4" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.4.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\IdentityServer3.Contrib.Membership\IdentityServer3.Contrib.Membership.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="idsrv3test.pfx" />
+    <EmbeddedResource Include="idsrv3test.pfx" />
   </ItemGroup>
 </Project>
