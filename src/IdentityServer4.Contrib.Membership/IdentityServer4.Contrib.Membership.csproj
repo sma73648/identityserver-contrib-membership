@@ -3,9 +3,9 @@
     <Copyright>Copyright © 2017 onwards</Copyright>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <Configurations>Debug;Release</Configurations>
-    <VersionPrefix>4.0.0</VersionPrefix>
     <NetStandardImplicitPackageVersion>2.0.0</NetStandardImplicitPackageVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageProjectUrl>https://github.com/sma73648/identityserver-contrib-membership</PackageProjectUrl>
     <PackageLicenseUrl>https://www.mozilla.org/en-US/MPL/2.0/</PackageLicenseUrl>
     <PackageIconUrl>https://identityserver.github.io/Documentation/assets/images/icons/IDserver_icon128.jpg</PackageIconUrl>
@@ -14,13 +14,13 @@
     <Authors>Stuart Banks, Scott Mackay @wwwlicious</Authors>
     <Description>An IdentityServer plugin for authenticating against a ASP.NET 2.0 Membership Database</Description>
     <PackageTags>IdentityServer</PackageTags>
-    <PackageReleaseNotes>See project url for details</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/sma73648/identityserver-contrib-membership/releases</PackageReleaseNotes>
     <Version>$(Version)</Version>
     <PackageOutputPath>$(PackageOutputPath)</PackageOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="GitLink" Version="3.1.0" PrivateAssets="All" />
     <PackageReference Include="IdentityServer4" Version="2.3.2" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-18618-05" PrivateAssets="All" />
     <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
   </ItemGroup>
 </Project>
