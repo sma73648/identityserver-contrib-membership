@@ -16,7 +16,6 @@
     <PackageReleaseNotes>https://github.com/sma73648/identityserver-contrib-membership/releases</PackageReleaseNotes>
     <Version>$(Version)</Version>
     <PackageOutputPath>$(PackageOutputPath)</PackageOutputPath>
-    <IncludeSymbols>true</IncludeSymbols>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="IdentityModel" Version="2.8.1" />
